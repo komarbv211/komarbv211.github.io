@@ -4,6 +4,7 @@
     <meta charset="uft-8">
         <title>сайт web-студії "Web-DECO"</title>
         <!--=============== JAVASCRIPT ====================-->
+        <script src="js/clock1.js"></script>
         <script type="text/javascript">
             function send()
             {
@@ -40,6 +41,12 @@
                 font-size: 2em;
             }
         </style>
+<script>
+    window.onload = function()
+    {
+        setInterval(clockPainting, 1000);
+    }
+</script>
 </head>
 <body background="images/bg.jpg">
   <table border="1" align="center" cellpadding="10">
@@ -61,6 +68,8 @@
     </tr>
     <tr>
         <td width="30%" valign="top">
+<center><canvas id="canvas" height="120" width="120"></canvas></center>
+<hr>  
             <font size="5" color="navy"><h2>Новини</h2></font>
             <font size="5">
                 <ul>
