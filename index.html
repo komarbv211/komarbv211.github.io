@@ -3,6 +3,35 @@
 <head>
     <meta charset="uft-8">
         <title>сайт web-студії "Web-DECO"</title>
+        <!--=============== JAVASCRIPT ====================-->
+        <script type="text/javascript">
+            function send()
+            {
+                var valid = true;
+                var elems = document.forms[0].elements;
+                for(var i=0; i<document.forms[0].length;i++)
+                {
+                    if(elems[i].getAtribute('type')=='text' ||
+                    elems[i].getAtribute('type')=='password' ||
+                    elems[i].getAtribute('type')=='email' )
+                    {
+                        if(elems[i].value == '')
+                        {
+                            elems[i].style.border = '2px solid red';
+                            valid=false;
+                        }
+                       
+                    }
+                }
+                if(!valid)
+                {
+                    alert('Заповніть всі поля !!!');
+                    return false;
+                }
+            }
+        </script>
+        <!--=============================================-->
+
         <style>
             .shadowtext
             {
