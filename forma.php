@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <htm>
 <head>
-    <meta charset="uft-8">
+    <meta charset="utf-8">
         <title>сайт web-студії "Web-DECO"</title>
         <!--=============== JAVASCRIPT ====================-->
         <script src="js/clock1.js"></script>
@@ -109,6 +109,32 @@
             </form>
             <hr>    
         </td>
+        <td widtch="70%" background="images/bg.jpg" valing='top'> <font size="5">
+            <h1 align="center" border="1" width="600">
+                <tr>
+                    <td align="center"><b>Прізвище</b></td>
+                    <td align="center"><b>Імя</b></td>
+                    <td align="center"><b>E-mail</b></td>
+                    <td align="center"><b>Пароль</b></td>
+                </tr>
+                <?php
+                $data = file("baza.txt");
+                foreach ($data as $line) {
+                    $trs = explode(";",$line);
+                    echo '<td>'.$trs[0].'</td>';
+                    echo '<td>'.$trs[1].'</td>';
+                    echo '<td>'.$trs[2].'</td>';
+                    echo '<td>'.$trs[3].'</td>';
+                    echo '</tr>';
+                }
+                ?>
+
+
+
+
+
+
+
     <td width="70%">
     <?php
 $st = $_POST['name2'].";".$_POST['name1'].";".$_POST['email'].";".$_POST['password']."\n";
@@ -121,7 +147,7 @@ echo "<h2 align='center' > на Ваш E-Mail : ".$_POST['email']."<br> відп
     </tr>
     <tr>
         <td background="images/bg-3.jpg" colspan="2" valign="middle" height="90">
-            <font size="4">Сайт розробив "Автор"</font>
+            <font size="4">Сайт розробив "Komar"</font>
         </td>
     </tr>
 </table>

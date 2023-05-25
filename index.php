@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <htm>
 <head>
-    <meta charset="uft-8">
+    <meta charset="utf-8">
         <title>сайт web-студії "Web-DECO"</title>
         <!--=============== JAVASCRIPT ====================-->
         <script src="js/clock1.js"></script>
