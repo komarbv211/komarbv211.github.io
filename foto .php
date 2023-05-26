@@ -3,31 +3,6 @@
 <head>
     <meta charset="utf-8">
     <title>сайт web-студії "Web-DECO"</title>
-    <?php
-$log_path = 'log.txt';
-
-// Отримуємо IP-адресу користувача з змінної оточення
-$user_ip = $_SERVER['REMOTE_ADDR'];
-
-// Отримуємо браузер користувача з заголовка User-Agent
-$user_browser = $_SERVER['HTTP_USER_AGENT'];
-
-// Отримуємо поточний час
-$current_time = date("ymd H:i:s");
-
-// Формуємо рядок для запису в лог
-$log_string = "User IP: $user_ip, User Browser: $user_browser, Current Time: $current_time";
-
-// Відкриваємо файл для додавання даних
-$file = fopen($log_path, "a");
-
-// Записуємо рядок в файл
-fwrite($file, $log_string . PHP_EOL);
-
-// Закриваємо файл
-fclose($file);
-?>
-
     <!--=============== JAVASCRIPT ====================-->
     <script src="js/clock1.js"></script>
     <script type="text/javascript">
@@ -59,7 +34,6 @@ fclose($file);
             font-size: 2em;
         }
     </style>
-
     <script>
         window.onload = function() {
             setInterval(clockPainting, 1000);
@@ -70,25 +44,32 @@ fclose($file);
     <table border="1" align="center" cellpadding="10">
         <tr>
             <td background="images/bg-3.jpg" colspan="2" height="150" align="right" hspace="5">
-                <font size="5" color="Maroon"><h1 class="shadowtext">сайт web-студії "Web-DECO"</h1></font>
+                <font size="5" color="Maroon">
+                    <img src="images/logo.png" height=":140" width="140" align="left">
+                    <h1 class="shadowtext">Cайт web-студії "Web-DECO"</h1>
+                </font>
             </td>
         </tr>
         <tr>
             <td colspan="2">
-                <font size="4"><b>
-                    <a href="index.html">Головна</a>&nbsp;&nbsp;
-                    <a href="foto.html">Фотогалерея</a>&nbsp;&nbsp;
-                    <a href="#">Телефони</a>&nbsp;&nbsp;
-                    <a href="statistics.html">Статистика</a>&nbsp;&nbsp;
-                    <a href="#">Зареєстровані</a>&nbsp;&nbsp;
-                    </b></font>
+                <font size="4">
+                    <b>
+                        <a href="index.html">Головна</a>&nbsp;&nbsp;
+                        <a href="foto.html">Фотогалерея</a>&nbsp;&nbsp;
+                        <a href="#">Телефони</a>&nbsp;&nbsp;
+                        <a href="statistics.html">Статистика</a>&nbsp;&nbsp;
+                        <a href="forma .html">Зареєстровані</a>&nbsp;&nbsp;
+                    </b>
+                </font>
             </td>
         </tr>
         <tr>
             <td width="30%" valign="top">
                 <center><canvas id="canvas" height="120" width="120"></canvas></center>
                 <hr>
-                <font size="5" color="navy"><h2>Новини</h2></font>
+                <font size="5" color="navy">
+                    <h2>Новини</h2>
+                </font>
                 <font size="5">
                     <ul>
                         <li><a href="#">Сайт будівельної компанії</a></li>
@@ -127,34 +108,45 @@ fclose($file);
                 </form>
                 <hr>
             </td>
-            <td width="70%" background="images/bg.jpg" valign="top">
-                <font size="5">
-                    <h1 align="center" style="border: 1px solid;" width="600">
-                        <tr>
-                            <td align="center"><b>Прізвище</b></td>
-                            <td align="center"><b>ім'я</b></td>
-                            <td align="center"><b>Електронна пошта</b></td>
-                            <td align="center"><b>Пароль</b></td>
-                        </tr>
-                        <?php
-                        $data = file("baza.txt");
-                        foreach ($data as $line) {
-                            $trs = explode(";", $line);
-                            echo '<tr>';
-                            echo '<td>' . $trs[0] . '</td>';
-                            echo '<td>' . $trs[1] . '</td>';
-                            echo '<td>' . $trs[2] . '</td>';
-                            echo '<td>' . $trs[3] . '</td>';
-                            echo '</tr>';
+            <td width="70%">
+                <h1 align="center">Фотогалерея</h1>
+                <?php
+                // Функція для видалення зайвих файлів (включаючи поточний і батьківський каталоги)
+                // також можна додати перевірку на розширення, якщо файли не є зображеннями
+                function excess($files)
+                {
+                    $result = array();
+                    for ($i = 0; $i < count($files); ++$i) {
+                        if ($files[$i] != '.' && $files[$i] != '..') {
+                            $result[] = $files[$i];
                         }
-                        ?>
-                    </h1>
-                </font>
+                    }
+                    return $result;
+                }
+
+                // Шлях до каталогу зображень
+                $dir = "pic";
+
+                // Отримуємо список файлів у цьому каталозі
+                $files = scandir($dir);
+
+                // Видаляємо зайві файли
+                $files = excess($files);
+                ?>
+                <?php
+                for ($i = 0; $i < count($files); $i++) {
+                ?>
+                    <img src="<?php echo $dir. "/" . $files[$i] ?>" alt="" width="350" height="250" hspace="5" vspace="7" border="5" onclick="this.classList.toggle('big')" />
+                    <?php if (($i + 1) % 4 == 0) { ?>
+                        <br/>
+                    <?php }
+                } ?>
+                
             </td>
         </tr>
         <tr>
             <td background="images/bg-3.jpg" colspan="2" valign="middle" height="90">
-                <font size="4">Сайт розробив "Komar"</font>
+                <font size="4">Сайт розробив "Komar A."</font>
             </td>
         </tr>
     </table>
